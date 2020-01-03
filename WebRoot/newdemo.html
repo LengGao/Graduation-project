@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset=" utf-8"> 
+<meta name="author" content="http://www.softwhy.com/" />
+<head>
+<title>蚂蚁部落</title>
+<style type="text/css">
+#txtTotal,#txtPrice{
+  border-right-width:0px;
+  margin-right:0px;
+}
+</style>
+<script type="text/javascript"> 
+function checkInt(o){ 
+  theV=isNaN(parseInt(o.value))?0:parseInt(o.value); 
+  if(theV!=o.value){
+ o.value=theV;
+  } 
+  txtTotal.value=txtAmount.value*txtPrice.value; 
+} 
+function checkP(o){ 
+  theV=isNaN(parseFloat(o.value))?0:parseFloat(o.value); 
+  theV=parseInt(theV*100)/100; 
+  if(theV!=o.value){ 
+    theV=(theV*100).toString(); 
+    theV=theV.substring(0,theV.length-2)+"."+theV.substring(theV.length-2,theV.length) 
+    o.value=theV; 
+  } 
+  txtTotal.value=txtAmount.value*txtPrice.value; 
+} 
+window.onload=function(){
+  var txtAmount=document.getElementById("txtAmount");
+  var txtPrice=document.getElementById("txtPrice");
+  txtAmount.onkeyup=function(){
+    checkInt(this)
+  }
+  txtAmount.onpaste=function(){
+    checkInt(this);
+  }
+  txtAmount.oncut=function(){
+    checkInt(this);
+  }
+  txtAmount.ondrop=function(){
+    checkInt(this);
+  }
+  txtAmount.onchange=function(){
+    checkInt(this);
+  }
+   
+  txtPrice.onkeyup=function(){
+    checkP(this)
+  }
+  txtPrice.onpaste=function(){
+    checkP(this);
+  }
+  txtPrice.oncut=function(){
+    checkP(this);
+  }
+  txtPrice.ondrop=function(){
+    checkP(this);
+  }
+  txtPrice.onchange=function(){
+    checkP(this);
+  }
+}
+</script> 
+</head> 
+<body> 
+数量: 
+<input id="txtAmount" type="number" value="0" /> 
+单价: 
+<input id="txtPrice" value="581.5" readonly/> 
+总价: 
+<input id="txtTotal" value="0" readonly> 
+</body> 
+</html>

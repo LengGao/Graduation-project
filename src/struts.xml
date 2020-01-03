@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="action" namespace="/" extends="struts-default">
+	<action name="loginAction" class="loginAction" method="execute">
+		<result name="login_service">/login_service.jsp</result>
+		<result name="login_success">/login_success.jsp</result>
+		<result name="login_error">/error.jsp</result>
+	</action>
+	
+	<!-- 业务 -->
+	<!-- 显示房间 -->
+	<action name="serviceShowRoom" class="action.PurchaseOrdersAction" method="serviceShowRoom">
+	<result name="success">/serviceShowRoom.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<!-- 订房 退房业务-->
+	<action name="readyBookRoom" class="action.PurchaseOrdersAction" method="readyBookRoom">
+	<result name="success">/serviceBookRoom.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<action name="serviceBookRoom" class="action.PurchaseOrdersAction" method="bookRoom">
+	<result name="success" type="chain">serviceShowRoom</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<action name="serviceOutRoom" class="action.PurchaseOrdersAction" method="outRoom">
+	<result name="success">/serviceOutRoom.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<action name="outRoomComplete" class="action.PurchaseOrdersAction" method="outComplete">
+	<result name="success" type="chain">serviceShowRoom</result>
+	<result name="input">/error.jsp</result>
+	</action>
+	<!-- 历史记录查询 -->
+	<action name="serviceCheck" class="action.PurchaseOrdersAction" method="serviceCheck">
+	<result name="success">/serviceCheck_success.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<!-- 单笔结算记录 -->
+	<action name="serviceStroke" class="action.PurchaseOrdersAction" method="serviceStroke">
+	<result name="success">/serviceStroke.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<!-- 日营业额记录 -->
+	<action name="serviceAllday" class="action.PurchaseOrdersAction" method="serviceAllday">
+	<result name="success">/serviceAllday.jsp</result>
+	<result name="input">/error.jsp</result>
+	</action>
+	
+	<!-- 信息维护 -->
+	<!-- 查所有 -->
+	<action name="showRoom" class="action.CommodityAction" method="queryCommodity">
+	<result name="commodity_information">/commodity_list.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<action name="showEmployee" class="action.EmployeeAction" method="query">
+	<result name="query_information">/Employees_query_success.jsp</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<!-- 添加 -->
+	<action name="addRoom" class="action.CommodityAction" method="addCommodity">
+	<result name="addCommodity_success" type="chain">showRoom</result>
+	<result name="saveCommdity_error">/error.jsp</result>
+	</action>
+	<action name="addEmployee" class="action.EmployeeAction" method="addEmployee">
+	<result name="addEmployee_success" type="chain">showEmployee</result>
+	<result name="add_error">/error.jsp</result>
+	</action>
+	<!-- 删除 -->
+	<action name="deleteCommodity" class="action.CommodityAction" method="deleteCommodity">
+	<result name="delete_success" type="chain">showRoom</result>
+	<result name="delrete_error">/error.jsp</result>
+	</action>
+	<action name="deleteEmployee" class="action.EmployeeAction" method="deleteEmployee">
+	<result name="delete_success" type="chain">showEmployee</result>
+	<result name="delete_error">/error.jsp</result>
+	</action>
+	<!-- 修改 -->
+	<action name="modifyCommdity" class="action.CommodityAction" method="modifyCommodity">
+	<result name="modify_success" type="chain">showRoom</result>
+	<result name="error">/error.jsp</result>
+	</action>
+	<action name="commoditySearch" class="action.CommodityAction" method="saveCommodity_info">
+	<result name="saveCommodity_success">commodity_modify.jsp</result>
+	<result name="saveCommdity_error">/error.jsp</result>
+	</action>
+	<action name="modifyEmployee" class="action.EmployeeAction" method="modifyEmployee">
+	<result name="modify_success" type="chain">showEmployee</result>
+	<result name="modify_error">/error.jsp</result>
+	</action>
+	<action name="modifyEmployeeinfo" class="action.EmployeeAction" method="saveUpdate">
+	<result name="modify_Employee">/Employees_modify.jsp</result>
+	<result name="modify_error">/error.jsp</result>
+	</action>
+	<!-- 找单个 -->
+	<action name="queryEmployeesById" class="action.EmployeeAction" method="queryEmployeeById">
+	<result name="queryById_success" type="redirect">/Employees_search1.jsp</result>
+	<result name="queryById_error">/error.jsp</result>
+	</action>
+	<action name="queryCommodityById" class="action.CommodityAction" method="queryCommodityById">
+	<result name="queryById_success" type="redirect">/commodity_search.jsp</result>
+	<result name="queryById_error">/error.jsp</result>
+	</action>
+</package>
+</struts>    
